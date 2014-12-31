@@ -21,7 +21,7 @@ In the current version, you can specify the following variables:
 | rewrite_rules         |   ---   | List containing custom nginx rewrite rules. (see below)      |
 
 
-Rewrite rules variable format
+rewrite_rules variable format
 -----------------------------
 ```yaml
 
