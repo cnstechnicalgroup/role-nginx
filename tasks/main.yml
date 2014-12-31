@@ -1,0 +1,11 @@
+---
+- name: Install nginx
+  apt: name=nginx-full state=latest update_cache=true
+
+- name: Ensure default site is enabled
+  file: src=/etc/nginx/sites-available/default dest=/etc/nginx/sites-enabled/default state=link
+
+- name: Copy nginx configuration for prestashop
+  template: src=default.conf dest=/etc/nginx/sites-available/default
+  notify: restart nginx
+
