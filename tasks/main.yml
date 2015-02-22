@@ -2,10 +2,12 @@
 - name: Install nginx
   apt: name=nginx-full state=latest update_cache=true
 
-- name: Ensure default site is enabled
-  file: src=/etc/nginx/sites-available/default dest=/etc/nginx/sites-enabled/default state=link
+- name: Ensure default site is disabled
+  file: path=/etc/nginx/sites-enabled/default state=absent
 
 - name: Copy nginx configuration for prestashop
-  template: src=default.conf dest=/etc/nginx/sites-available/default
+  template: src=default.conf dest="/etc/nginx/sites-available/{{ site_public_url }}"
   notify: restart nginx
 
+- name: Ensure site is enabled
+  file: src="/etc/nginx/sites-available/{{ site_public_url }}" dest="/etc/nginx/sites-enabled/{{ site_public_url }}" state=link
