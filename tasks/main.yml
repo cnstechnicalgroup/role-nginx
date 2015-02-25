@@ -11,3 +11,4 @@
 
 - name: Ensure site is enabled
   file: src="/etc/nginx/sites-available/{{ site_public_url }}" dest="/etc/nginx/sites-enabled/{{ site_public_url }}" state=link
+  notify: restart nginx
