@@ -5,7 +5,7 @@
 - name: Ensure default site is disabled
   file: path=/etc/nginx/sites-enabled/default state=absent
 
-- name: Copy nginx configuration for prestashop
+- name: Copy nginx site configuration 
   template: src=default.conf dest="/etc/nginx/sites-available/{{ site_public_url }}"
   notify: restart nginx
 
