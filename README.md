@@ -19,6 +19,7 @@ In the current version, you can specify the following variables:
 | site_public_url       |   ---   | Site URL. The primary site URL.                              |
 | cdn_endpoint          |   ---   | Primary CDN end-point.                                       |
 | rewrite_rules         |   ---   | List containing custom nginx rewrite rules. (see below)      |
+| nginx_whitelist_path  |   ---   | Optionally enable a whitelist (/allow.conf) to be included in the site config   |
 
 
 rewrite_rules variable format
