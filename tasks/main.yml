@@ -5,9 +5,15 @@
 - name: Ensure default site is disabled
   file: path=/etc/nginx/sites-enabled/default state=absent
 
-- name: Copy nginx site configuration 
+- name: Copy nginx site configuration [default]
   template: src=default.conf dest="/etc/nginx/sites-available/{{ site_public_url }}"
   notify: restart nginx
+  when: nginx_template is undefined or nginx_template == 'default.conf'
+
+- name: Copy nginx site configuration [ps]
+  template: src=ps.conf.j2 dest="/etc/nginx/sites-available/{{ site_public_url }}"
+  notify: restart nginx
+  when: nginx_template is defined and nginx_template == 'ps.conf.j2'
 
 - name: Ensure site is enabled
   file: src="/etc/nginx/sites-available/{{ site_public_url }}" dest="/etc/nginx/sites-enabled/{{ site_public_url }}" state=link
