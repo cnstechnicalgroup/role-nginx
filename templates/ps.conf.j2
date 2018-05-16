@@ -132,9 +132,10 @@ server {
     client_max_body_size 10M;
 
     # Temp file tweak
-    fastcgi_max_temp_file_size 0;
+    fastcgi_max_temp_file_size 1M;
     fastcgi_temp_file_write_size 256k;
-
+    fastcgi_buffers  16 16k;
+    fastcgi_buffer_size  32k;
   }
 
   {% if nginx_whitelist_path is defined %}
